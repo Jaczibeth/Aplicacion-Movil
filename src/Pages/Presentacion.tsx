@@ -1,52 +1,73 @@
 import React from 'react';
-import { View, StyleSheet, Image,TouchableOpacity } from 'react-native';
-import { Text, Button } from 'react-native-paper';
+import { View, StyleSheet, Image } from 'react-native';
+import { Text, Button, Card } from 'react-native-paper';
 
 export default function Presentacion({ navigation }) {
   return (
     <View style={styles.container}>
-          <Image source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDeyazS5stoekyhlBR5S4UAuZ4qTAdT0NogvGvI4ZkEpxZL5fNtKIG3JN0BD6wzprKZs&usqp=CAU" }} style={styles.logo}/> 
-      <Text style={styles.titulo}>Bienvenido a la App de Alumnos</Text>
-      <Text style={styles.subtitulo}> Aquí podrás registrar, listar y eliminar alumnos fácilmente</Text>
-      <Button icon="login" mode="contained" style={styles.button} onPress={() => navigation.replace('Home')}>  Entra</Button>
+      <Card style={styles.card}>
+        <Card.Content style={styles.cardContent}>
+          <Image
+            source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDeyazS5stoekyhlBR5S4UAuZ4qTAdT0NogvGvI4ZkEpxZL5fNtKIG3JN0BD6wzprKZs&usqp=CAU" }}
+            style={styles.logo}
+          />
+          <Text variant="headlineMedium" style={styles.titulo}>
+            Bienvenido a la App de Alumnos
+          </Text>
+          <Text variant="bodyMedium" style={styles.subtitulo}>
+            Aquí podrás registrar, listar y eliminar alumnos fácilmente
+          </Text>
+          <Button
+            icon="login"
+            mode="contained"
+            style={styles.button}
+            onPress={() => navigation.navigate('Home')}
+          >
+            Entra
+          </Button>
+        </Card.Content>
+      </Card>
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffffff",
+    backgroundColor: "#e6f7fb",
     justifyContent: "center",
     alignItems: "center",
-    padding: 10,
+    padding: 20,
   },
- 
+  card: {
+    width: "90%",
+    borderRadius: 20,
+    elevation: 5,
+    backgroundColor: "white",
+    paddingVertical: 30,
+  },
+  cardContent: {
+    alignItems: "center",
+  },
   titulo: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
     textAlign: "center",
+    marginVertical: 10,
+    fontWeight: "bold",
   },
   subtitulo: {
-    fontSize: 16,
-    color: "#555",
     textAlign: "center",
-    marginBottom: 30,
+    marginBottom: 20,
+    color: "#555",
   },
   logo: {
-    width: 220,
-    height: 220,
-    marginBottom: 20,
+    width: 180,
+    height: 180,
+    marginBottom: 15,
+    borderRadius: 100,
   },
-   button: {
-    backgroundColor: "#90d3e0ff",
-    padding: 5,
-    borderRadius:70,
+  button: {
+    marginTop: 10,
+    borderRadius: 25,
     width: "70%",
-    height:50,    
-    alignItems: "center",
-
   },
-
-
 });
