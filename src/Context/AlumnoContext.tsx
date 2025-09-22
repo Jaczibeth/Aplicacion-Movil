@@ -10,7 +10,7 @@ interface AlumnoContextType {
 }
 const defaultValue: AlumnoContextType = {
   alumnos: [],
-  setAlumnos: () => {}, // función vacía temporal
+  setAlumnos: () => {},
 };
 export const AlumnoContext = createContext<AlumnoContextType>(defaultValue);
 interface Props {

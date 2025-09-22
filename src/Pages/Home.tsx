@@ -8,12 +8,6 @@ const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      {/* Appbar */}
-      <Appbar.Header>
-        <Appbar.Content title="Gestion de estudiantes" subtitle="Gestión de estudiantes" />
-        <Appbar.Action icon={MORE_ICON} onPress={() => {}} />
-      </Appbar.Header>
-
       <ScrollView contentContainerStyle={styles.cardsContainer}>
         <Card style={styles.card} onPress={() => navigation.navigate('ListaAlumnos')}>
           <Card.Title
