@@ -7,24 +7,10 @@ export default function Presentacion({ navigation }) {
     <View style={styles.container}>
       <Card style={styles.card}>
         <Card.Content style={styles.cardContent}>
-          <Image
-            source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDeyazS5stoekyhlBR5S4UAuZ4qTAdT0NogvGvI4ZkEpxZL5fNtKIG3JN0BD6wzprKZs&usqp=CAU" }}
-            style={styles.logo}
-          />
-          <Text variant="headlineMedium" style={styles.titulo}>
-            Bienvenido a la App de Alumnos
-          </Text>
-          <Text variant="bodyMedium" style={styles.subtitulo}>
-            Aquí podrás registrar, listar y eliminar alumnos fácilmente
-          </Text>
-          <Button
-            icon="login"
-            mode="contained"
-            style={styles.button}
-            onPress={() => navigation.navigate('Principal')}
-          >
-            Entra
-          </Button>
+          <Image source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDeyazS5stoekyhlBR5S4UAuZ4qTAdT0NogvGvI4ZkEpxZL5fNtKIG3JN0BD6wzprKZs&usqp=CAU" }}style={styles.logo}/>
+          <Text variant="headlineMedium" style={styles.titulo}> Bienvenido a la App de Alumnos </Text>
+          <Text variant="bodyMedium" style={styles.subtitulo}>Aquí podrás registrar, listar y eliminar alumnos fácilmente</Text>
+          <Button icon="login" mode="contained" style={styles.button} onPress={() => navigation.navigate('Principal')}> Entra</Button>
         </Card.Content>
       </Card>
     </View>
