@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Appbar, Card, Text, IconButton } from 'react-native-paper';
+import {  Card, IconButton } from 'react-native-paper';
 import { Platform } from 'react-native';
 
 const MORE_ICON = Platform.OS === 'ios' ? 'dots-horizontal' : 'dots-vertical';
@@ -10,24 +10,15 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.cardsContainer}>
         <Card style={styles.card} onPress={() => navigation.navigate('ListaAlumnos')}>
-          <Card.Title
-            title="Lista Alumnos"
-            left={(props) => <IconButton {...props} icon="account-multiple" />}
-          />
+          <Card.Title title="Lista Alumnos" left={(props) => <IconButton {...props} icon="account-multiple" />} />
         </Card>
 
         <Card style={styles.card} onPress={() => navigation.navigate('RegistrarAlumno')}>
-          <Card.Title
-            title="Registrar Alumno"
-            left={(props) => <IconButton {...props} icon="account-plus" />}
-          />
+          <Card.Title  title="Registrar Alumno" left={(props) => <IconButton {...props} icon="account-plus" />} />
         </Card>
 
         <Card style={styles.card} onPress={() => navigation.navigate('EliminarAlumno')}>
-          <Card.Title
-            title="Eliminar Alumno"
-            left={(props) => <IconButton {...props} icon="account-remove" />}
-          />
+          <Card.Title  title="Eliminar Alumno" left={(props) => <IconButton {...props} icon="account-remove" />}/>
         </Card>
       </ScrollView>
     </View>

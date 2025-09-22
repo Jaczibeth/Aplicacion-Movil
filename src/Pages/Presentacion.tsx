@@ -21,7 +21,7 @@ export default function Presentacion({ navigation }) {
             icon="login"
             mode="contained"
             style={styles.button}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Principal')}
           >
             Entra
           </Button>
