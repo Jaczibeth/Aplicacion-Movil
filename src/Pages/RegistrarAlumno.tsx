@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, StyleSheet, KeyboardAvoidingView, Platform, Image, TouchableOpacity } from 'react-native';
-import { TextInput, Button, Text, Title } from 'react-native-paper';
+import { TextInput, Button, Text } from 'react-native-paper';
 import { AlumnoContext } from '../Context/AlumnoContext';
 import * as ImagePicker from 'expo-image-picker'; 
 
@@ -47,11 +47,8 @@ export default function RegistrarAlumno({ navigation }) {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <Title style={styles.title}>Registrar Alumno</Title>
-
       <TextInput label="Nombre"value={nombre}onChangeText={setNombre}style={styles.input}mode="outlined" outlineColor="#c7a7f5ff"activeOutlineColor="#c7a7f5ff"/>
        <TextInput label="Número de control"value={matricula}onChangeText={setMatricula}style={styles.input}mode="outlined"outlineColor="#c7a7f5ff"activeOutlineColor="#c7a7f5ff"/>
-
       <TextInput label="Carrera"value={carrera}onChangeText={setCarrera}style={styles.input}mode="outlined"outlineColor="#c7a7f5ff"activeOutlineColor="#c7a7f5ff"/>
       {/* Imagen */}
       <TouchableOpacity style={styles.imageContainer} onPress={seleccionarImagen}>
@@ -63,7 +60,9 @@ export default function RegistrarAlumno({ navigation }) {
       </TouchableOpacity>
       <Button mode="contained" onPress={agregarAlumno} style={styles.button}> Agregar Alumno</Button>
       <Button mode="outlined"onPress={() => navigation.navigate('ListaAlumnos')}style={[styles.button, { marginTop: 10 }]}>Ver Lista de Alumnos </Button>
+      
     </KeyboardAvoidingView>
+
   );
 }
 

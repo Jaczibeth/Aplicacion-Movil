@@ -11,6 +11,7 @@ import EliminarAlumno from './src/Pages/EliminarAlumno';
 import Principal from './src/Pages/Principal';
 import CambiarFondo from './src/Pages/CambiarFondo';
 import ECM from './src/Pages/ECM';
+import ModificarAlumno from './src/Pages/ModificarAlumno';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           <Stack.Screen name="EliminarAlumno" component={EliminarAlumno} />
            <Stack.Screen name="CambiarFondo" component={CambiarFondo} options={{ title: 'Cambiar Fondo' }} />
            <Stack.Screen name="ECM" component={ECM} options={{ title: 'Estado Con Mensaje' }} />
+           <Stack.Screen name="ModificarAlumno" component={ModificarAlumno} options={{ title: 'Modificar Alumno' }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </AlumnoProvider>

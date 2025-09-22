@@ -3,7 +3,7 @@ import { View, StyleSheet, FlatList, Alert, Image } from 'react-native';
 import { Card, IconButton, Text } from 'react-native-paper';
 import { AlumnoContext } from '../Context/AlumnoContext';
 
-export default function EliminarAlumno() {
+export default function EliminarAlumno({ navigation }) {
   const { alumnos, setAlumnos } = useContext(AlumnoContext);
 
   const eliminarAlumno = (id: string) => {
@@ -12,19 +12,42 @@ export default function EliminarAlumno() {
       { text: 'Eliminar', onPress: () => setAlumnos(alumnos.filter(a => a.id !== id)) },
     ]);
   };
+
   const renderItem = ({ item }) => (
     <Card style={styles.card}>
       <Card.Content style={styles.cardContent}>
+        {/* Imagen */}
         {item.imagen ? (
-          <Image source={{ uri: item.imagen }} style={styles.image} /> ) : (
-          <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' }}style={styles.image}/>
+          <Image source={{ uri: item.imagen }} style={styles.image} /> 
+        ) : (
+          <Image 
+            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' }} 
+            style={styles.image} 
+          />
         )}
+
+        {/* Datos del alumno */}
         <View style={styles.textContainer}>
           <Text style={styles.name}>{item.nombre}</Text>
           <Text style={styles.detail}>Matrícula: {item.matricula}</Text>
           <Text style={styles.detail}>Carrera: {item.carrera || 'No especificada'}</Text>
         </View>
-        <IconButton icon="delete"size={28} onPress={() => eliminarAlumno(item.id)}/>
+
+        {/* Botón para modificar */}
+        <IconButton 
+          icon="pencil" 
+          size={28} 
+         
+          onPress={() => navigation.navigate('ModificarAlumno', { alumno: item })} 
+        />
+
+        {/* Botón para eliminar */}
+        <IconButton 
+          icon="delete"
+          size={28}
+         
+          onPress={() => eliminarAlumno(item.id)}
+        />
       </Card.Content>
     </Card>
   );
@@ -34,7 +57,12 @@ export default function EliminarAlumno() {
       {alumnos.length === 0 ? (
         <Text style={styles.emptyText}>No hay alumnos para eliminar</Text>
       ) : (
-        <FlatList data={alumnos} keyExtractor={(item) => item.id} renderItem={renderItem} contentContainerStyle={{ paddingBottom: 20 }}/>
+        <FlatList 
+          data={alumnos} 
+          keyExtractor={(item) => item.id} 
+          renderItem={renderItem} 
+          contentContainerStyle={{ paddingBottom: 20 }}
+        />
       )}
     </View>
   );
