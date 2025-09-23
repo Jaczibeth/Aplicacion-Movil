@@ -19,7 +19,6 @@ export default function Principal({ navigation }) {
         <Card style={styles.card} onPress={() => navigation.navigate('ECM')}>
           <Card.Title title="Estado con Mensaje"  subtitle=" Ejemplo de estado que muestre un mensaje en consola cada vez que el valor del estado cambie" left={(props) => <IconButton {...props} icon="refresh" />}/>
         </Card>
-
       </ScrollView>
     </View>
   );

@@ -1,12 +1,14 @@
 import React, { createContext, useState, ReactNode } from 'react';
-
-// Nuevo: agregamos carrera e imagen al alumno
 export interface Alumno {
   id: string;
   nombre: string;
   matricula: string;
-  carrera?: string;   // opcional
-  imagen?: string;    // opcional
+  carrera?: string;
+  edad?: string;
+  correo?: string;
+  telefono?: string;
+  descripcion?: string;
+  imagen?: string;
 }
 
 interface AlumnoContextType {
@@ -21,12 +23,16 @@ const defaultValue: AlumnoContextType = {
 
 export const AlumnoContext = createContext<AlumnoContextType>(defaultValue);
 
-interface Props { children: ReactNode;}
+interface Props { 
+  children: ReactNode;
+}
 
 export const AlumnoProvider = ({ children }: Props) => {
   const [alumnos, setAlumnos] = useState<Alumno[]>([]);
 
   return (
-    <AlumnoContext.Provider value={{ alumnos, setAlumnos }}> {children}</AlumnoContext.Provider>
+    <AlumnoContext.Provider value={{ alumnos, setAlumnos }}>
+      {children}
+    </AlumnoContext.Provider>
   );
 };

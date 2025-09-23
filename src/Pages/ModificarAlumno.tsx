@@ -11,11 +11,15 @@ export default function ModificarAlumno({ route, navigation }) {
   const [nombre, setNombre] = useState(alumno.nombre);
   const [matricula, setMatricula] = useState(alumno.matricula);
   const [carrera, setCarrera] = useState(alumno.carrera || '');
+  const [edad, setEdad] = useState(alumno.edad || '');
+  const [correo, setCorreo] = useState(alumno.correo || '');
+  const [telefono, setTelefono] = useState(alumno.telefono || '');
+  const [descripcion, setDescripcion] = useState(alumno.descripcion || '');
   const [imagen, setImagen] = useState(alumno.imagen || null);
 
   const guardarCambios = () => {
     const alumnosActualizados = alumnos.map(a => 
-      a.id === alumno.id ? { ...a, nombre, matricula, carrera, imagen } : a
+      a.id === alumno.id ? { ...a, nombre, matricula, carrera, edad, correo, telefono, descripcion, imagen } : a
     );
     setAlumnos(alumnosActualizados);
     navigation.goBack();
@@ -36,10 +40,14 @@ export default function ModificarAlumno({ route, navigation }) {
   return (
     <KeyboardAvoidingView
       style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <Title style={styles.title}>Modificar Alumno</Title>
-      <TextInput   label="Nombre" value={nombre}onChangeText={setNombre} style={styles.input}mode="outlined" outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
-      <TextInput label="Número de control" value={matricula} onChangeText={setMatricula} style={styles.input} mode="outlined" outlineColor="#6200ee"activeOutlineColor="#6200ee"/>
-      <TextInput label="Carrera" value={carrera}onChangeText={setCarrera}style={styles.input}mode="outlined"outlineColor="#6200ee"activeOutlineColor="#6200ee"/>
+      <TextInput label="Nombre" value={nombre} onChangeText={setNombre} style={styles.input} mode="outlined" outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
+      <TextInput label="Número de control" value={matricula} onChangeText={setMatricula} style={styles.input} mode="outlined" keyboardType="numeric" outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
+      <TextInput label="Carrera" value={carrera} onChangeText={setCarrera} style={styles.input} mode="outlined" outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
+      <TextInput label="Edad" value={edad} onChangeText={setEdad} style={styles.input} mode="outlined" keyboardType="numeric" outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
+      <TextInput label="Correo electrónico" value={correo} onChangeText={setCorreo} style={styles.input} mode="outlined" keyboardType="email-address" outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
+      <TextInput label="Teléfono" value={telefono} onChangeText={setTelefono} style={styles.input} mode="outlined" keyboardType="phone-pad" outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
+      <TextInput label="Descripción (Qué le gusta, hobbies, etc.)" value={descripcion} onChangeText={setDescripcion} style={styles.input} mode="outlined" multiline outlineColor="#6200ee" activeOutlineColor="#6200ee"/>
+
       <TouchableOpacity style={styles.imageContainer} onPress={seleccionarImagen}>
         {imagen ? (
           <Image source={{ uri: imagen }} style={styles.image} />
@@ -48,7 +56,8 @@ export default function ModificarAlumno({ route, navigation }) {
         )}
       </TouchableOpacity>
 
-      <Button mode="contained" onPress={guardarCambios} style={styles.button}>Guardar Cambios</Button></KeyboardAvoidingView>
+      <Button mode="contained" onPress={guardarCambios} style={styles.button}>Guardar Cambios</Button>
+    </KeyboardAvoidingView>
   );
 }
 

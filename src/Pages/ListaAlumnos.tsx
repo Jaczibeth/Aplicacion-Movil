@@ -3,24 +3,25 @@ import { View, FlatList, StyleSheet, Image } from 'react-native';
 import { Text, Card } from 'react-native-paper';
 import { AlumnoContext } from '../Context/AlumnoContext';
 
-export default function ListaAlumnos() {
+export default function ListaAlumnos({ navigation }) {
   const { alumnos } = useContext(AlumnoContext);
 
   const renderItem = ({ item }) => (
-    <Card style={styles.card}>
+    <Card style={styles.card} onPress={() => navigation.navigate('EditarAlumno', { alumnoId: item.id })}>
       <Card.Content style={styles.cardContent}>
         {item.imagen ? (
           <Image source={{ uri: item.imagen }} style={styles.image} />
         ) : (
-          <Image
-            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' }}
-            style={styles.image}
-          />
+          <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' }}style={styles.image}/>
         )}
         <View style={styles.textContainer}>
           <Text style={styles.name}>{item.nombre}</Text>
           <Text style={styles.detail}>Matrícula: {item.matricula}</Text>
           <Text style={styles.detail}>Carrera: {item.carrera}</Text>
+          {item.edad ? <Text style={styles.detail}>Edad: {item.edad}</Text> : null}
+          {item.correo ? <Text style={styles.detail}>Correo: {item.correo}</Text> : null}
+          {item.telefono ? <Text style={styles.detail}>Teléfono: {item.telefono}</Text> : null}
+          {item.descripcion ? <Text style={styles.detail}>Hobbies: {item.descripcion}</Text> : null}
         </View>
       </Card.Content>
     </Card>
@@ -31,7 +32,7 @@ export default function ListaAlumnos() {
       {alumnos.length === 0 ? (
         <Text style={styles.emptyText}>No hay alumnos registrados</Text>
       ) : (
-        <FlatList data={alumnos}keyExtractor={(item) => item.id}renderItem={renderItem}contentContainerStyle={{ paddingBottom: 20 }}/>
+        <FlatList data={alumnos} keyExtractor={(item) => item.id} renderItem={renderItem} contentContainerStyle={{ paddingBottom: 20 }}/>
       )}
     </View>
   );
