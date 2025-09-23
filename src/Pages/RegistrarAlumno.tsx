@@ -70,7 +70,7 @@ export default function RegistrarAlumno({ navigation }) {
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <TextInput label="Nombre" value={nombre} onChangeText={setNombre} style={styles.input} mode="outlined" outlineColor="#c7a7f5ff" activeOutlineColor="#c7a7f5ff"/>
-      <TextInput label="Número de control" value={matricula}onChangeText={setMatricula} style={styles.input} mode="outlined" outlineColor="#292234ff" keyboardType="numeric"  activeOutlineColor="#c7a7f5ff"/> 
+      <TextInput label="Número de control" value={matricula}onChangeText={setMatricula} style={styles.input} mode="outlined" outlineColor="#c7a7f5ff" keyboardType="numeric"  activeOutlineColor="#c7a7f5ff"/> 
       <TextInput label="Carrera"value={carrera}onChangeText={setCarrera}style={styles.input}mode="outlined"outlineColor="#c7a7f5ff"activeOutlineColor="#c7a7f5ff"/>
       <TextInput label="Edad"value={edad}onChangeText={setEdad}style={styles.input}mode="outlined"keyboardType="numeric"outlineColor="#c7a7f5ff"activeOutlineColor="#c7a7f5ff"/>
       <TextInput label="Correo electrónico"value={correo}onChangeText={setCorreo}style={styles.input}mode="outlined"keyboardType="email-address"outlineColor="#c7a7f5ff"activeOutlineColor="#c7a7f5ff"/>
