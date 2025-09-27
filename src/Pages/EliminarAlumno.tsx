@@ -1,20 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Alert,
-  Image,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Alert, Image, TouchableOpacity, Text,} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { AlumnoContext } from '../Context/AlumnoContext';
 import { Alumno, getAlumnos, deleteAlumno } from '../Api/alumnoApi';
 
 export default function EliminarAlumno({ navigation }: any) {
   const { alumnos, setAlumnos } = useContext(AlumnoContext);
-
   const cargarAlumnos = async () => {
     try {
       const res = await getAlumnos();
@@ -47,20 +38,11 @@ export default function EliminarAlumno({ navigation }: any) {
       },
     ]);
   };
-
   const renderItem = ({ item }: { item: Alumno }) => (
     <View style={styles.cardContainer}>
       <TouchableOpacity activeOpacity={0.7} style={styles.imageWrapper}>
-        <Image
-          source={{
-            uri:
-              item.imagen ||
-              'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-          }}
-          style={styles.cardImage}
-        />
+        <Image source={{  uri:    item.imagen ||    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',}}style={styles.cardImage}/>
       </TouchableOpacity>
-
       <View style={styles.textContainer}>
         <Text style={styles.cardTitle}>{item.nombre}</Text>
         <Text style={styles.cardDetail}>Matrícula: {item.matricula}</Text>
@@ -68,17 +50,11 @@ export default function EliminarAlumno({ navigation }: any) {
           Carrera: {item.carrera || 'No especificada'}
         </Text>
       </View>
-
-      <TouchableOpacity
-        onPress={() => eliminarAlumno(item.id)}
-        style={styles.deleteButton}
-        activeOpacity={0.7}
-      >
+      <TouchableOpacity onPress={() => eliminarAlumno(item.id)}style={styles.deleteButton}activeOpacity={0.7} >
         <Icon name="trash-outline" size={26} color="#e63946" />
       </TouchableOpacity>
     </View>
   );
-
   return (
     <View style={styles.container}>
       {alumnos.length === 0 ? (
@@ -91,32 +67,13 @@ export default function EliminarAlumno({ navigation }: any) {
           contentContainerStyle={{ paddingBottom: 90 }}
         />
       )}
-
-      {/* Banner inferior */}
       <View style={styles.bottomBar}>
-        <TouchableOpacity
-          style={styles.tabItem}
-          onPress={() => navigation.navigate('Principal')}
-        >
-          <Icon
-            name="person-circle-outline"
-            size={28}
-            color="#050505ff"
-          />
-          <Text
-            style={[
-              styles.tabLabel,
-              { fontWeight: 'bold' },
-            ]}
-          >
-            Principal
-          </Text>
+        <TouchableOpacity style={styles.tabItem}  onPress={() => navigation.navigate('Principal')} >
+          <Icon name="person-circle-outline" size={28} color="#050505ff"/>
+          <Text style={[ styles.tabLabel, { fontWeight: 'bold' },  ]}>  Principal</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.tabItem}
-          onPress={() => navigation.navigate('Home')}
-        >
+        <TouchableOpacity style={styles.tabItem} onPress={() => navigation.navigate('Home')}>
           <Icon name="home-outline" size={28} color="#050505ff" />
           <Text style={styles.tabLabel}>Home</Text>
         </TouchableOpacity>
