@@ -1,18 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import {
-  View, StyleSheet, ScrollView, Alert, Image, TouchableOpacity, KeyboardAvoidingView, Platform
-} from 'react-native';
+import { View, StyleSheet, ScrollView, Alert, Image, TouchableOpacity, KeyboardAvoidingView, Platform} from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import { AlumnoContext } from '../Context/AlumnoContext';
 import { Alumno, updateAlumno } from '../Api/alumnoApi';
-
 export default function ED({ route, navigation }) {
   const { alumnos, setAlumnos } = useContext(AlumnoContext);
   const { alumnoId } = route.params;
-
   const alumno = alumnos.find((a) => a.id === alumnoId);
-
   const [nombre, setNombre] = useState('');
   const [matricula, setMatricula] = useState('');
   const [carrera, setCarrera] = useState('');
@@ -21,7 +16,6 @@ export default function ED({ route, navigation }) {
   const [telefono, setTelefono] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [imagen, setImagen] = useState<string | null>(null);
-
   useEffect(() => {
     if (alumno) {
       setNombre(alumno.nombre);
@@ -41,18 +35,15 @@ export default function ED({ route, navigation }) {
       Alert.alert('Permiso denegado', 'Se requiere acceso a la galería.');
       return;
     }
-
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       quality: 0.5,
     });
-
     if (!result.canceled) {
       setImagen(result.assets[0].uri);
     }
   };
-
   const guardarCambios = async () => {
     if (!alumno) return;
 
@@ -60,7 +51,6 @@ export default function ED({ route, navigation }) {
       Alert.alert('Por favor completa todos los campos obligatorios.');
       return;
     }
-
     const alumnoActualizado: Alumno = {
       nombre,
       matricula,
@@ -71,7 +61,6 @@ export default function ED({ route, navigation }) {
       descripcion,
       imagen,
     };
-
     try {
       await updateAlumno(alumnoId, alumnoActualizado);
       const updatedAlumnos = alumnos.map(a => (a.id === alumnoId ? alumnoActualizado : a));
@@ -84,7 +73,6 @@ export default function ED({ route, navigation }) {
       console.error(error);
     }
   };
-
   if (!alumno) {
     return (
       <View style={styles.container}>
@@ -92,76 +80,60 @@ export default function ED({ route, navigation }) {
       </View>
     );
   }
-
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined} >
       <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
         <Text style={styles.title}>Editar Alumno</Text>
-
         <TextInput
           label="Nombre"
           value={nombre}
           onChangeText={(text) => setNombre(text.slice(0, 30))}
           style={styles.input}
-          mode="outlined"
-        />
+          mode="outlined"  />
         <Text style={styles.charCounter}>{nombre.length}/30</Text>
-
         <TextInput
           label="Matrícula"
           value={matricula}
           onChangeText={(text) => setMatricula(text.slice(0, 8))}
           style={styles.input}
           mode="outlined"
-          keyboardType="numeric"
-        />
-
+          keyboardType="numeric"/>
         <TextInput
           label="Carrera"
           value={carrera}
           onChangeText={setCarrera}
           style={styles.input}
-          mode="outlined"
-        />
-
+          mode="outlined"/>
         <TextInput
           label="Edad"
           value={edad}
           onChangeText={(text) => setEdad(text.replace(/[^0-9]/g, '').slice(0, 2))}
           style={styles.input}
           mode="outlined"
-          keyboardType="numeric"
-        />
-
+          keyboardType="numeric" />
         <TextInput
           label="Correo"
           value={correo}
           onChangeText={setCorreo}
           style={styles.input}
           mode="outlined"
-          keyboardType="email-address"
-        />
-
+          keyboardType="email-address" />
         <TextInput
           label="Teléfono"
           value={telefono}
           onChangeText={(text) => setTelefono(text.replace(/[^0-9]/g, '').slice(0, 10))}
           style={styles.input}
           mode="outlined"
-          keyboardType="phone-pad"
-        />
-
+          keyboardType="phone-pad"  />
         <TextInput
           label="Descripción"
           value={descripcion}
           onChangeText={(text) => setDescripcion(text.slice(0, 35))}
           style={styles.inputMultiline}
           mode="outlined"
-          multiline
-        />
+          multiline />
         <Text style={styles.charCounter}>{descripcion.length}/35</Text>
 
         <TouchableOpacity style={styles.imageContainer} onPress={seleccionarImagen}>
@@ -171,7 +143,6 @@ export default function ED({ route, navigation }) {
             <Text style={{ color: '#777' }}>Toca aquí para seleccionar una imagen</Text>
           )}
         </TouchableOpacity>
-
         <View style={styles.buttonGroup}>
           <Button mode="contained" onPress={guardarCambios} style={styles.button}>
             Guardar Cambios
@@ -184,7 +155,6 @@ export default function ED({ route, navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
