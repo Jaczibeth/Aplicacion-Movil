@@ -1,53 +1,49 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { Card, Text } from 'react-native-paper';
-
+import { View, StyleSheet, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { Text } from 'react-native-paper';
 export default function CambiarFondo() {
-  const [fondo, setFondo] = useState('#93daed65');
+  const [fondo, setFondo] = useState('#fce4ec');
+  const [fadeAnim] = useState(new Animated.Value(1));
   const colores = [
-    '#ff8a65', '#4db6ac', '#7986cb', '#ffd54f', '#f06292', 
-    '#aed581', '#ba68c8', '#64b5f6', '#81c784', '#ffb74d',
-    '#e57373', '#90a4ae', '#ce93d8', '#4dd0e1', '#c4b2dcff'
+    '#fce4ec', '#f8bbd0', '#e1bee7', '#d1c4e9', '#c5cae9',
+    '#b3e5fc', '#b2dfdb', '#c8e6c9', '#fff9c4', '#ffecb3',
+    '#ffe0b2', '#ffccbc', '#d7ccc8', '#cfd8dc','#96cbe1ff'
   ];
+  const cambiarFondoConAnimacion = (color) => {
+    Animated.sequence([
+      Animated.timing(fadeAnim, {
+        toValue: 0.3,
+        duration: 150,
+        useNativeDriver: false,
+      }),
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: false,
+      }),
+    ]).start();
+
+    setFondo(color);
+  };
   return (
-    <View style={[styles.container, { backgroundColor: fondo }]}>
-      <ScrollView contentContainerStyle={styles.botonesContainer}>
+    <Animated.View style={[styles.container, { backgroundColor: fondo, opacity: fadeAnim }]}>
+      <Text style={styles.titulo}>Elige tu color favorito </Text>
+      <View style={[styles.previo]}>
+        <Text style={styles.colorC}>{fondo.toUpperCase()}</Text>
+      </View>
+      <ScrollView contentContainerStyle={styles.paleta} showsVerticalScrollIndicator={false}>
         {colores.map((color) => (
-          <Card key={color} style={[styles.cardColor, { backgroundColor: color }]} onPress={() => setFondo(color)} >
-            <Card.Content>
-              <Text style={styles.textoColor}>{color}</Text>
-            </Card.Content>
-          </Card>
+          <TouchableOpacity  key={color}onPress={() => cambiarFondoConAnimacion(color)}style={[styles.colorCi, { backgroundColor: color }]}/>
         ))}
       </ScrollView>
-    </View>
+    </Animated.View>
   );
 }
-
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    justifyContent: 'flex-start', 
-    alignItems: 'center', 
-    padding: 20 
-  },
-  botonesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-  cardColor: {
-    width: 100,
-    height: 100,
-    margin: 10,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 5,
-  },
-  textoColor: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
+  container: { flex: 1, paddingTop: 60, paddingHorizontal: 20, alignItems: 'center',},
+  titulo: {fontSize: 24,fontWeight: '700',color: '#333',marginBottom: 30,},
+  previo: {width: '85%',height: 120,borderRadius: 20,backgroundColor: '#ffffff88',justifyContent: 'center',alignItems: 'center',marginBottom: 30,elevation: 4,},
+  colorC: { fontSize: 18, fontWeight: '600', color: '#444',},
+  paleta: {flexDirection: 'row', flexWrap: 'wrap',justifyContent: 'center', paddingBottom: 50 },
+  colorCi: {width: 60,height: 60,borderRadius: 30,margin: 10,borderWidth: 2,borderColor: '#ffffffaa',elevation: 3,  },
 });
