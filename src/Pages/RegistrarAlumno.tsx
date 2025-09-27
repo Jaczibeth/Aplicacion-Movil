@@ -47,33 +47,27 @@ export default function RegistrarAlumno({ navigation }: any) {
       Alert.alert('El nombre no debe exceder los 30 caracteres');
       return;
     }
-
     if (descripcion.length > 35) {
       Alert.alert('La descripción no debe exceder los 35 caracteres');
       return;
     }
-
     const correoValido = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(correo);
     if (!correoValido) {
       Alert.alert('El correo debe ser un correo válido de Gmail (ejemplo: jaczicruz@gmail.com)');
       return;
     }
-
     if (matricula.length !== 8) {
       Alert.alert('La matrícula debe tener 8 números');
       return;
     }
-
     if (telefono && telefono.length !== 10) {
       Alert.alert('El teléfono debe tener 10 números');
       return;
     }
-
     if (edad && (Number(edad) <= 0 || Number(edad) > 99)) {
       Alert.alert('Ingresa una edad válida');
       return;
     }
-
     const correoExistente = alumnos.find(
       (a) => a.correo?.toLowerCase() === correo.toLowerCase()
     );
@@ -81,7 +75,6 @@ export default function RegistrarAlumno({ navigation }: any) {
       Alert.alert('El correo ya está registrado');
       return;
     }
-
     const matriculaExistente = alumnos.find((a) => a.matricula === matricula);
     if (matriculaExistente) {
       Alert.alert('El número de control ya está registrado');
