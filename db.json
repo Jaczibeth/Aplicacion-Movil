@@ -1,0 +1,37 @@
+{
+  "alumnos": [
+    {
+      "nombre": "Jodue",
+      "matricula": "94649",
+      "carrera": "Hshdvh",
+      "edad": 25,
+      "correo": "jaczicruz@gmail.com",
+      "telefono": "943494",
+      "descripcion": "Jsisjs",
+      "imagen": "file:///data/user/0/host.exp.exponent/cache/ImagePicker/4d82c0b0-d551-403c-b45f-5200c5ee4e4e.jpeg",
+      "id": "d8ec"
+    },
+    {
+      "nombre": "Jaczibeth ",
+      "matricula": "88546797",
+      "carrera": "ISC ",
+      "edad": 21,
+      "correo": "jaczicr@gmail.com",
+      "telefono": "6487544",
+      "descripcion": "Hshsjs",
+      "imagen": "file:///data/user/0/host.exp.exponent/cache/ImagePicker/fdfd6e9c-9268-4a90-bf13-e9c327a73a49.png",
+      "id": "26d7"
+    },
+    {
+      "nombre": "Azucena",
+      "matricula": "64646828",
+      "carrera": "Licenciatura en Administración",
+      "edad": 25,
+      "correo": "zuc@gmail.com",
+      "telefono": "9764386451",
+      "descripcion": "Vsjsuchsbdnz",
+      "imagen": "file:///data/user/0/host.exp.exponent/cache/ImagePicker/c044d2c3-7bf2-4316-ace0-5523a700ff78.jpeg",
+      "id": "b119"
+    }
+  ]
+}
